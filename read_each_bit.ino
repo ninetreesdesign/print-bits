@@ -1,13 +1,14 @@
 // read/print each bit of a numeric value
 //
 
+#include <Arduino.h>
+
 void setup() {
   Serial.begin(57600);
   Serial.println();
 
 }
 int datamsg = 0xA050;
-static int i;
 static byte bitval;
 
 void loop() {
@@ -20,4 +21,5 @@ void loop() {
   }
   Serial.println();
   delay(1500);
+  datamsg++;
 }

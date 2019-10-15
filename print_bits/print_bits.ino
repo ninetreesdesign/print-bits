@@ -1,9 +1,8 @@
-// read/print each bit of a numeric value
+// read/print each bit of a numeric value. EX 0xA001:  1010 0000 0000 0001
 
 #include <Arduino.h>
 
 char compileDATE[] PROGMEM = __DATE__;
-char compileTIME[] PROGMEM = __TIME__;
 
 int value = 0xA050;
 String binary_string = "";
@@ -11,18 +10,15 @@ String binary_string = "";
 // function prototypes
 String buildBinaryString(int);
 
-///
-void setup() {
-    compileDATE[3] = '.';  //
-    compileDATE[6] = '.';  // replace spaces
 
-    Serial.begin(115200);
+void setup() {
+   Serial.begin(115200);
     while (!Serial && (millis() < 5000)) {
     }  // include timeout to continue program if print console isn't opened
     Serial.println("USB Serial Print initialized.");
-    Serial.printf("%s  %s\n\n", compileDATE, compileTIME);
+    Serial.printf("%s \n\n", compileDATE);
 
-    for (int i = 1; i <= 4; i++) {
+    for (int i = 1; i <= 3; i++) {      // show three incrementing values
         binary_string = buildBinaryString(value);
         Serial.printf("%d  %X ", i, value);
         Serial.println(binary_string);
@@ -30,10 +26,11 @@ void setup() {
     }
 }
 
-/// main loop
-void loop() {}
 
-/* functions */
+void loop() {
+
+}
+
 
 /// create a binary string from a number (ex: 1110 0101)
 String buildBinaryString(int number) {
